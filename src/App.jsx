@@ -1,13 +1,15 @@
+import { Route, Routes } from "react-router-dom";
 import Footer from "./components/common/Footer";
 import Navbar from "./components/common/Navbar";
+import Home from "./pages/Home";
 
 function App() {
   return (
     <>
       <Navbar />
-      <div>
-        <p className="text-red-500 font-roboto">Parampara store </p>
-      </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
 
       <Footer />
     </>
