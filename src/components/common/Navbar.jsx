@@ -1,14 +1,12 @@
 import React from "react";
-import SocialLinks from "./SocialLinks";
 import Cta from "./Cta";
-import NavTabs from "./NavTabs";
+import NavItems from "./NavItems";
 
 const Navbar = () => {
   return (
     <div>
-      <SocialLinks />
-      <Cta />
-      <NavTabs />
+      <NavItems />
+      {/* <Cta /> */}
     </div>
   );
 };
