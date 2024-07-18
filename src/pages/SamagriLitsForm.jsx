@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { samagriList } from "../data/samagriItem";
+import emailjs from "@emailjs/browser";
 
-// const fruits = ["Apple", "Banana", "Cherry", "Date", "Elderberry"];
+const serviceID = "service_mv58jld";
+const templateID = "template_mwbs5tr";
+const publicKey = "P2wI4rh7hAmHuLC-g";
 
 const SamagriListForm = () => {
   const [formState, setFormState] = useState(
@@ -25,7 +28,27 @@ const SamagriListForm = () => {
     const selectedFruits = formState
       .filter((item) => item.checked)
       .map((item) => ({ name: item.name, quantity: item.quantity }));
-    console.log(selectedFruits);
+
+    // Construct the message body with the selected items and their quantities
+    const messageBody = selectedFruits
+      .map((item, index) => `${index + 1}. ${item.name}: ${item.quantity}`)
+      .join("\n");
+
+    const templateParams = {
+      from_name: "Krishna",
+      to_name: "Abhishek Dwivedi",
+      email: "krishnagptamcs@gmail.com",
+      message: `This is testing of new order:\n\n${messageBody}`,
+    };
+
+    emailjs.send(serviceID, templateID, templateParams, publicKey).then(
+      (response) => {
+        console.log("SUCCESS!", response.status, response.text);
+      },
+      (error) => {
+        console.log("FAILED...", error);
+      }
+    );
   };
 
   return (
